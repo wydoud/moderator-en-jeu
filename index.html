@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Discord</title>
+</head>
+<body>
+  <h1>Mon Site avec Webhook Discord</h1>
+  <p>Cliquez sur le lien ci-dessous pour envoyer une notification à Discord.</p>
+  <a href="#" onclick="sendToDiscord(); return false;">Clique ici</a>
+
+  <script>
+    function sendToDiscord() {
+      const webhookUrl = 'https://discord.com/api/webhooks/1293768536870617238/PSV-3SxejnrGsF0tTu6IYNsuRgBzCxMClY6CD1_woMBZHfhTTmFb5lC-Q_uz8DXmhQf7';
+      const data = {
+        content: "Quelqu'un a cliqué sur le lien !"
+      };
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Notification envoyée à Discord !');
+        } else {
+          alert('Erreur lors de l\'envoi de la notification.');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+        alert('Erreur lors de l\'envoi de la notification.');
+      });
+    }
+  </script>
+</body>
+</html>
